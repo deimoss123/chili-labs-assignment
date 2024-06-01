@@ -1,31 +1,18 @@
-import ProductCard from "@/components/ProductCard";
-import { Category } from "@/types/Category";
-import { Product } from "@/types/Product";
+import ProductList from "@/components/ProductList";
+import Search from "@/components/Search";
+import { Suspense } from "react";
 
-const BASE_URL = "https://dummyjson.com/products";
-
-export default async function Home() {
-  const [fetchProducts, fetchCategories] = await Promise.all([
-    fetch(`${BASE_URL}/category/mens-shirts`).then((r) => r.json()),
-    fetch(`${BASE_URL}/categories`).then((r) => r.json()),
-  ]);
-
-  const products: Product[] = fetchProducts.products;
-  const categories: Category[] = fetchCategories;
-
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: { query?: string };
+}) {
   return (
-    <>
-      <h1 className="text-lg">Products</h1>
-      <main className="px-10">
-        <ul className="flex flex-wrap gap-4">
-          {products.map((p) => (
-            <ProductCard
-              product={p}
-              categoryName={categories.find((c) => c.slug === p.category)?.name ?? p.category}
-            />
-          ))}
-        </ul>
-      </main>
-    </>
+    <main className="p-4">
+      <Search />
+      <Suspense key={searchParams?.query ?? null} fallback={<p>Loading...</p>}>
+        <ProductList query={searchParams?.query} />
+      </Suspense>
+    </main>
   );
 }
