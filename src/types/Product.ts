@@ -19,13 +19,7 @@ export type Product = {
   warrantyInformation: string;
   shippingInformation: string;
   availabilityStatus: string;
-  reviews: {
-    rating: number;
-    comment: string;
-    date: string;
-    reviewerName: string;
-    reviewerEmail: string;
-  }[];
+  reviews: Review[];
   returnPolicy: string;
   minimumOrderQuantity: number;
   meta: {
@@ -37,3 +31,11 @@ export type Product = {
   thumbnail: string;
   images: string[];
 };
+
+export type Review = {
+  rating: number;
+  comment: string;
+  date: string;
+  reviewerName: string;
+  reviewerEmail: string;
+}
