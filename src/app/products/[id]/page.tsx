@@ -13,7 +13,7 @@ async function Page({ params: { id } }: { params: { id: string } }) {
     <main className="mt-8 px-4 pb-4 max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-[2]">
-          <img src={product.images[0]}></img>
+          <img className="mx-auto" src={product.images[0]}></img>
         </div>
         <div className="flex-1">
           <h1 className="text-2xl font-semibold">{product.title}</h1>
