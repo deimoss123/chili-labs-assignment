@@ -12,10 +12,10 @@ async function Page({ params: { id } }: { params: { id: string } }) {
   return (
     <main className="mt-8 px-4 pb-4 max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row gap-4">
-        <div className="">
+        <div className="flex-[2]">
           <img src={product.images[0]}></img>
         </div>
-        <div className="">
+        <div className="flex-1">
           <h1 className="text-2xl font-semibold">{product.title}</h1>
           <div className="flex gap-6 mb-8">
             <div>{product.rating}/5</div>
