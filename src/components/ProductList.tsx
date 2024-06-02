@@ -6,11 +6,7 @@ import Pagination from "./Pagination";
 const BASE_URL = "https://dummyjson.com/products";
 const PRODUCTS_PER_PAGE = 12;
 
-function fetchProductsURL(
-  query: string,
-  currentPage: number,
-  limit: number,
-) {
+function fetchProductsURL(query: string, currentPage: number, limit: number) {
   const params = new URLSearchParams();
 
   if (query) {
@@ -33,7 +29,9 @@ type Props = {
 
 export default async function ProductList({ query, currentPage }: Props) {
   const [fetchProducts, fetchCategories] = await Promise.all([
-    fetch(fetchProductsURL(query, currentPage, PRODUCTS_PER_PAGE)).then((r) => r.json()),
+    fetch(fetchProductsURL(query, currentPage, PRODUCTS_PER_PAGE)).then((r) =>
+      r.json(),
+    ),
     // it isn't optimal to fetch categories every time we fetch products
     // this should be fetched once and cached
     fetch(`${BASE_URL}/categories`).then((r) => r.json()),
@@ -44,9 +42,11 @@ export default async function ProductList({ query, currentPage }: Props) {
 
   const totalPages = Math.ceil(fetchProducts.total / PRODUCTS_PER_PAGE);
 
-  return (
+  return !products.length ? (
+    <h2 className="text-center mt-6 text-xl font-semibold">No products found</h2>
+  ) : (
     <>
-      <ul className="flex flex-wrap gap-4">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
         {products.map((p) => (
           <ProductCard
             product={p}
