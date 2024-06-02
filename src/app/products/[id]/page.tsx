@@ -51,7 +51,7 @@ async function Page({ params: { id } }: { params: { id: string } }) {
         <h2 className="text-xl font-semibold mb-2">Customer reviews</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {product.reviews.map((review) => (
-            <ReviewCard review={review} />
+            <ReviewCard key={review.reviewerEmail} review={review} />
           ))}
         </div>
       </div>
