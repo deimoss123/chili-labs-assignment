@@ -3,11 +3,9 @@ import { Product } from "@/types/Product";
 import Link from "next/link";
 
 async function Page({ params: { id } }: { params: { id: string } }) {
-  const product = (await fetch(`https://dummyjson.com/products/${id}`).then(
-    (res) => res.json(),
-  )) as Product;
-
-  console.log(product);
+  const product = (await fetch(
+    `https://dummyjson.com/products/${id}?select=title,price,description,rating,stock,weight,dimensions,images,reviews`,
+  ).then((res) => res.json())) as Product;
 
   return (
     <main className="mt-8 px-4 pb-4 max-w-6xl mx-auto">
