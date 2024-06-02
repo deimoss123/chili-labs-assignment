@@ -9,8 +9,6 @@ export default function Search() {
   const { replace } = useRouter();
 
   const handleSearch = useDebouncedCallback((text: string) => {
-    console.log("searching:", text);
-
     const params = new URLSearchParams(searchParams);
     params.set("page", "1");
 
@@ -27,7 +25,7 @@ export default function Search() {
     <div className="w-full flex mx-auto sm:w-96">
       <input
         type="text"
-        className="border border-black m-4 mx-auto w-full border-none bg-gray-100 p-2 rounded"
+        className="border border-black mb-4 mx-auto w-full border-none bg-gray-100 p-2 rounded"
         placeholder="Search products..."
         defaultValue={searchParams.get("query")?.toString() ?? ""}
         onChange={(e) => handleSearch(e.target.value)}
