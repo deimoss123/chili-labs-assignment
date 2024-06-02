@@ -8,7 +8,7 @@ type Props = {
 
 export default function ProductCard({ product, categoryName }: Props) {
   return (
-    <li key={product.id} className="mb-4 bg-slate-100 p-2">
+    <li key={product.id} className="bg-slate-100 p-2">
       <Link href={`/products/${product.id}`}>
         <img
           className="aspect-[1/1] object-center object-cover w-full bg-white"

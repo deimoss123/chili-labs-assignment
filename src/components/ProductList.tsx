@@ -43,7 +43,9 @@ export default async function ProductList({ query, currentPage }: Props) {
   const totalPages = Math.ceil(fetchProducts.total / PRODUCTS_PER_PAGE);
 
   return !products.length ? (
-    <h2 className="text-center mt-6 text-xl font-semibold">No products found</h2>
+    <h2 className="text-center mt-6 text-xl font-semibold">
+      No products found
+    </h2>
   ) : (
     <>
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
@@ -52,7 +54,8 @@ export default async function ProductList({ query, currentPage }: Props) {
             product={p}
             key={p.id}
             categoryName={
-              categories.find((c) => c.slug === p.category)?.name ?? p.category
+              categories.find((c) => c.slug === p.category)?.name ??
+              p.category
             }
           />
         ))}
